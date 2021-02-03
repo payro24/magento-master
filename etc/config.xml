@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../Store/etc/config.xsd">
+    <default>
+        <payment>
+            <payro24>
+                <active>1</active>
+                <title>Pay With payro24</title>
+                <order_status>pending_payment</order_status>
+                <after_order_status>completed</after_order_status>
+                <payment_action>true</payment_action>
+                <model>payro24\payro24\Model\payro24</model>
+                <group>offline</group>
+                <sort_order>1</sort_order>
+                <sandbox>1</sandbox>
+                <currency>0</currency>
+                <success_massage>پرداخت شما با موفقیت انجام شد. کد رهگیری: {track_id}</success_massage>
+                <failed_massage>پرداخت شما ناموفق بوده است. لطفا مجددا تلاش نمایید یا در صورت بروز اشکال با مدیر سایت تماس بگیرید.کد رهگیری: {track_id}</failed_massage>
+            </payro24>
+        </payment>
+    </default>
+</config>

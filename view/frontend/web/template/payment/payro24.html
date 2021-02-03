@@ -1,0 +1,49 @@
+<!--
+/**
+ * Copyright © 2015 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<div class="payment-method" data-bind="css: {'_active': (getCode() == isChecked())}">
+    <div class="payment-method-title field choice">
+        <input type="radio"
+               name="payment[method]"
+               class="radio"
+               data-bind="attr: {'id': getCode()}, value: getCode(), checked: isChecked, click: selectPaymentMethod, visible: isRadioButtonVisible()"/>
+        <label data-bind="attr: {'for': getCode()}" class="label">
+            <img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPCFET0NUWVBFIHN2ZyBQVUJMSUMgIi0vL1czQy8vRFREIFNWRyAxLjEvL0VOIiAiaHR0cDovL3d3dy53My5vcmcvR3JhcGhpY3MvU1ZHLzEuMS9EVEQvc3ZnMTEuZHRkIj4KPCEtLSBDcmVhdG9yOiBDb3JlbERSQVcgWDggLS0+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWw6c3BhY2U9InByZXNlcnZlIiB3aWR0aD0iMTc1cHgiIHZlcnNpb249IjEuMSIgc3R5bGU9InNoYXBlLXJlbmRlcmluZzpnZW9tZXRyaWNQcmVjaXNpb247IHRleHQtcmVuZGVyaW5nOmdlb21ldHJpY1ByZWNpc2lvbjsgaW1hZ2UtcmVuZGVyaW5nOm9wdGltaXplUXVhbGl0eTsgZmlsbC1ydWxlOmV2ZW5vZGQ7IGNsaXAtcnVsZTpldmVub2RkIgp2aWV3Qm94PSIwIDAgMzM4NyA4NDciCiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayI+CiA8ZGVmcz4KICA8c3R5bGUgdHlwZT0idGV4dC9jc3MiPgogICA8IVtDREFUQVsKICAgIC5maWwwIHtmaWxsOiMxNDcxRUF9CiAgICAuZmlsMSB7ZmlsbDojRkU2ODFFfQogICBdXT4KICA8L3N0eWxlPgogPC9kZWZzPgogPGcgaWQ9IkxheWVyX3gwMDIwXzEiPgogIDxtZXRhZGF0YSBpZD0iQ29yZWxDb3JwSURfMENvcmVsLUxheWVyIi8+CiAgPHBhdGggY2xhc3M9ImZpbDAiIGQ9Ik0xMDU3IDQyOWwtNjcgMCA2IC02OCA2NiAwIC01IDY4em0tNTMwIC01N2MwLDI1IC0xNiwzOSAtNDAsMzkgLTg3LC0xIC0xODksLTMgLTI3NCwxIC0zMCwyIC0zMyw1MSAtMSw1MWwxNDkgMCAtOSAxMDBjLTEsMjMgLTcsNDUgOCw1NyA2LDUgMTQsOSAyNSw5bDcyMiAwYzE1LDAgMjYsLTggMzIsLTE3IDEwLC0xMyA3LC0xOSAxMCwtMzkgNSwtNDAgNywtOTkgMTIsLTEzOCAwLC02IDEsLTE2IDIsLTIzIDEsLTggMiwtMTcgMiwtMjQgMCwtMjUgNSwtNTAgNiwtNjggMCwtMTAgMSwtMTUgMSwtMjRsLTg2MyAwYy0xMywwIC0yMyw5IC0yNSwxOCAtNCwxMyAzLDI1IDEyLDI3IDE4LDYgMTkyLC01IDIxMyw0IDksNSAxOCwxNCAxOCwyN3oiLz4KICA8cGF0aCBjbGFzcz0iZmlsMSIgZD0iTTE2NjggNTM2bC0xMDQgMGMwLC0zOCAxMiwtMTQwIDE1LC0xODhsOCAtOTNjMywtMTggMywtNTMgNiwtNzEgMSwtNiAyLC0xNyAyLC0yMyA0NywwIDEwOSwtMyAxNTEsOCAyNyw3IDUzLDIyIDY3LDQ2IDM5LDY3IDE5LDIwMCAtMTQsMjU1IC0yNyw0NiAtNzksNjYgLTEzMSw2NnptLTIxMCA5M2wxODggMGM4NywwIDE1NywtMjYgMjAwLC03MCA1NCwtNTQgNzQsLTExMCA4NSwtMTg2IDExLC03NyA1LC0xODIgLTU0LC0yNDAgLTQ1LC00NCAtMTA3LC02MyAtMTc0LC02M2wtMjAyIDBjMCwxNyAtNCwzNyAtNCw1MyAtMyw1MSAtMTAsMTA2IC0xNCwxNTggLTEsMTEgLTIsMjQgLTMsMzQgLTEsMjYgLTksODYgLTksMTA2IDAsMTUgLTUsNTMgLTYsNzAgLTEsMzMgLTgsODcgLTEwLDEyNCAtMSw3IC01LDE0IDMsMTR6Ii8+CiAgPHBhdGggY2xhc3M9ImZpbDAiIGQ9Ik0yMTk0IDM1NGwtNzkgMGMwLC0yOCA2LC02NSA3LC05NiAyLC0zMSA4LC02NCA4LC05NWw5OSAwYzU0LDAgMTA3LDEyIDEwNyw3MyAwLDEwMSAtNDgsMTE4IC0xNDIsMTE4em0tMjA0IDI3NWw5NyAwYzYsMCA2LC0xMSA2LC0xOWwxMyAtMTY1IDExNSAwYzQyLDAgOTUsLTExIDEyNywtMzMgMTUsLTkgMjQsLTE1IDM2LC0yOSAzLC0zIDUsLTQgNywtNyAxMiwtMTIgMjQsLTM1IDMwLC01MSAxOCwtNDQgMjUsLTExOCAyLC0xNjQgLTQsLTEwIC05LC0yMCAtMTYsLTI4IC03LC04IC0xMiwtMTUgLTIxLC0yMiAtMzgsLTI5IC04NCwtNDEgLTEzMiwtNDFsLTIxNyAwIC0yNyAzMTRjLTIsNDMgLTE0LDE0MiAtMTQsMTc1IC0xLDE1IC02LDUzIC02LDcweiIvPgogIDxwYXRoIGNsYXNzPSJmaWwwIiBkPSJNMjYyNCA1NDVjLTIzLDAgLTQ5LDEgLTY3LC0xNCAtMTQsLTEzIC0xOCwtMjIgLTE4LC00NiAwLC00OCA1MiwtNTkgOTMsLTU5IDE3LDAgNDQsMSA1OCw0IDExLDIgNiw2IDUsMjQgLTIsMjkgLTIsNTUgLTIzLDc0IC05LDkgLTMwLDE3IC00OCwxN3ptNzggLTE3OWMtMjAsLTUgLTU4LC02IC04MCwtNiAtNjUsMCAtMTM3LDIwIC0xNjcsODAgLTIsMiAtMiwzIC00LDUgLTEsMyAtMiw1IC0zLDggLTIzLDUwIC03LDEyMCAzNiwxNTEgMzgsMjcgNzYsMzEgMTMwLDMxIDY0LDAgMTA2LC0xNyAxNDUsLTU5IDEzLC0xNCAyNSwtMzggMzAsLTU4IDcsLTI5IDcsLTc0IDExLC0xMDUgMTAsLTc5IDQsLTE2MCAtODAsLTE5NSAtMzksLTE2IC05OSwtMTcgLTE0MywtMTAgLTIxLDIgLTQ3LDggLTY3LDE1IC02LDIgLTUsMSAtNyw3IC0xLDMgLTEsNyAtMSwxMiAtMSwxNiAtNCwzNCAtNCw0OSAtMSw1IC0yLDExIC0yLDEzIDAsOCAyLDQgMjYsLTMgNDMsLTEzIDE0OCwtMzAgMTcyLDE4IDgsMTYgOCwyNCA4LDQ3eiIvPgogIDxwYXRoIGNsYXNzPSJmaWwwIiBkPSJNMjg2NCA3MDVjLTM2LDAgLTM5LC05IC01MSwtOSAwLDE5IC02LDY1IC02LDg1IDQsMiAxOSw2IDI0LDcgNTUsMTIgOTgsLTIgMTM4LC00MWwxNiAtMThjOCwtMTIgMTcsLTI0IDI0LC0zOCAxMiwtMjEgMzMsLTYzIDQzLC04Nmw4OSAtMTk2YzIsLTUgMywtNyA1LC0xMWwyMCAtNDNjOSwtMTkgNjMsLTEzNSA2NSwtMTQ0bC0xMDcgMGMtMSw1IC0xMSwyOSAtMTQsMzVsLTQzIDEwOGMtMTEsMzEgLTMyLDc2IC00MywxMDhsLTE0IDMzYy0xLDIgLTEsMSAtMiwyIC03LC0zMyAtMjYsLTExNiAtMzQsLTE0NGwtMjYgLTEwOWMtMiwtOSAtNSwtMzMgLTExLC0zM2wtMTAzIDBjMCw2IDIsMTEgNCwxNmwxMDggMzY5YzMsOSA0LDcgLTEsMTYgLTksMjEgLTE5LDM4IC0zMSw1NSAtOSwxMyAtMzEsMzggLTUwLDM4eiIvPgogIDxwYXRoIGNsYXNzPSJmaWwwIiBkPSJNMzg2IDE4NGw3OTIgMGM2LDAgNSwtNiA2LC0xN2w1IC02N2MwLC0xNyAtMTYsLTMxIC0zMywtMzFsLTcyMiAwYy0yMywwIC0zOCwxNiAtNDEsMzlsLTcgNzZ6Ii8+CiAgPHBhdGggY2xhc3M9ImZpbDEiIGQ9Ik0xMjUxIDYyOWw5OCAwYzYsMCA0LC03IDQsLTE0bDE3IC0xOTNjMiwtMTkgMywtNDkgNiwtNzEgMSwtMTAgMSwtMjMgMywtMzQgMSwtMTIgMSwtMjMgMywtMzZsNiAtNzBjMSwtMTEgMiwtMjIgMiwtMzVsOSAtMTA2IC05NyAwYy02LDAgLTQsMTIgLTYsMzFsLTkgMTA2Yy00LDI4IC02LDc1IC05LDEwNWwtNiA3MGMtMiwxMiAtMSwyNCAtMywzNiAtNSwzNSAtOCwxMDggLTEyLDE0MCAtMiwxMSAtMiwyMyAtMywzNCAtMiwxMyAtMywyNCAtMywzN3oiLz4KICA8cGF0aCBjbGFzcz0iZmlsMCIgZD0iTTIxNiAxODRsMTAzIDBjOCwwIDE0LC00IDE4LC03IDE2LC0xNCA4LC00MCAtOSwtNDBsLTExMyAwYy0yNCwyIC0zMiw0NyAxLDQ3eiIvPgogPC9nPgo8L3N2Zz4K"
+                 style="width: 70px;vertical-align: middle;">
+            <span data-bind="text: getTitle()"></span>
+        </label>
+    </div>
+    <div class="payment-method-content">
+        <!-- ko foreach: getRegion('messages') -->
+        <!-- ko template: getTemplate() --><!-- /ko -->
+        <!--/ko-->
+        <div class="payment-method-billing-address">
+            <!-- ko foreach: $parent.getRegion(getBillingAddressFormName()) -->
+            <!-- ko template: getTemplate() --><!-- /ko -->
+            <!--/ko-->
+        </div>
+        <div class="checkout-agreements-block">
+            <!-- ko foreach: $parent.getRegion('before-place-order') -->
+            <!-- ko template: getTemplate() --><!-- /ko -->
+            <!--/ko-->
+        </div>
+        <div class="actions-toolbar">
+            <div class="primary">
+                <button class="action primary checkout"
+                        type="submit"
+                        data-bind="
+                        click: placeOrder,
+                        attr: {title: $t('Place Order')},
+                        css: {disabled: !isPlaceOrderActionAllowed()},
+                        enable: (getCode() == isChecked())
+                        "
+                        disabled>
+                    <span data-bind="i18n: 'Place Order'"></span>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
